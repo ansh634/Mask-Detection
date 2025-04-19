@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mask Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main">
+        <!-- Left Section -->
+        <div class="left">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+                <h3>Ramdeobaba University Nagpur</h3>
+            </div>
+            <div class="headings">
+                <h1>Innovative Mask Detection Technology</h1>
+                <div class="stats">
+                    <p>Total Faces: <span id="total-faces">0</span></p>
+                    <p>Masked: <span id="masked-faces">0</span></p>
+                    <p>Not Masked: <span id="unmasked-faces">0</span></p>
+                </div><button><a href="{{ url_for('home') }}">Exit session</a></button>
+
+            </div>
+            
+        </div>
+
+        <!-- Right Section (Camera) -->
+        <div class="camera">
+            <div class="video-container">
+                <canvas id="canvas"></canvas>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const video = document.createElement('video'); // Hidden video for camera input
+
+        const totalFacesEl = document.getElementById('total-faces');
+        const maskedFacesEl = document.getElementById('masked-faces');
+        const unmaskedFacesEl = document.getElementById('unmasked-faces');
+
+        function resizeCanvas() {
+    const canvas = document.getElementById('canvas');
+    const parent = canvas.parentElement; // Ensure it takes the parent container's size
+
+    canvas.width = parent.clientWidth;
+    canvas.height = parent.clientWidth * (3 / 4); // Maintain 4:3 aspect ratio
+}
+
+// Call resizeCanvas on window resize
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas(); // Initial call to set the correct size
+
+        video.style.display = 'none';
+        document.body.appendChild(video);
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch(err => console.error("Error accessing the camera", err));
+
+        function processFrame() {
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/jpeg');
+
+            axios.post('/process_image', { image: imageData })
+                .then(response => drawResults(response.data))
+                .catch(error => console.error("Error processing the image", error));
+        }
+
+        function drawResults(results) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            let totalFaces = 0;
+            let maskedFaces = 0;
+            let unmaskedFaces = 0;
+
+            results.forEach(result => {
+                const [x, y, w, h] = result.bbox;
+                const isMasked = result.class === 'Masked';
+                const color = isMasked ? 'green' : 'red';
+
+                // Update counts
+                totalFaces++;
+                if (isMasked) {
+                    maskedFaces++;
+                } else {
+                    unmaskedFaces++;
+                }
+
+                // Draw bounding box and label
+                ctx.strokeStyle = color;
+                ctx.lineWidth = 2;
+                ctx.strokeRect(x, y, w, h);
+
+                ctx.fillStyle = color;
+                ctx.font = '16px Arial';
+                ctx.fillText(`${result.class}: ${result.confidence.toFixed(2)}`, x, y - 5);
+            });
+
+            // Update the UI with the counts
+            totalFacesEl.textContent = totalFaces;
+            maskedFacesEl.textContent = maskedFaces;
+            unmaskedFacesEl.textContent = unmaskedFaces;
+        }
+
+        setInterval(processFrame, 500); 
+    </script>
+</body>
+</html>

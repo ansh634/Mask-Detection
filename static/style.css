@@ -1,0 +1,207 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Body */
+body {
+    background-color: #f0f4f8;
+    color: #1a1a2e;
+    min-height: 100vh;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main Container */
+.main {
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    overflow: hidden;
+    position: relative;
+    flex-direction: row;
+}
+
+/* Left Section */
+.left {
+    padding: 30px 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #e0f7fa;
+}
+
+/* Logo Section */
+.left .logo {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.left .logo h3 {
+    font-size: 1rem;
+    color: #004d40;
+}
+
+/* Headings */
+.left .headings h1 {
+    font-size: 2rem;
+    color: #00796b;
+    margin-bottom: 20px;
+}
+
+/* Statistics Section */
+.stats {
+    margin-top: 20px;
+    background-color: #b2ebf2;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    width: 90%;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.stats p {
+    font-size: 1rem;
+    margin: 8px 0;
+    color: #004d40;
+}
+
+.stats span {
+    font-weight: bold;
+}
+
+/* Button */
+.left button {
+    padding: 12px 30px;
+    background-color: #3949ab;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.left button a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+}
+
+.left button:hover {
+    background-color: #283593;
+}
+
+/* Camera Section */
+.camera {
+    width: 650px;
+    height: 500px;
+    background-color: #e3f2fd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+#canvas {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 4 / 3.5;
+    background-color: #e3f2fd;
+    object-fit: contain;
+}
+
+/* Video Container */
+.video-container {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+}
+
+/* Footer */
+footer {
+    background-color: #1a1a2e;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logo {
+        align-items: center;
+        flex-direction: column;
+        position: static;
+        margin-bottom: 20px;
+    }
+    .main {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        margin: 10px auto;
+    }
+    h1 {
+        text-align: center;
+    }
+
+    .camera {
+        width: auto;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+    .left .headings h1 {
+        font-size: 1.5rem;
+    }
+    .logo {
+        align-items: center;
+        flex-direction: column;
+        position: static;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .stats p {
+        font-size: 0.9rem;
+    }
+
+    .logo img {
+        width: 45px;
+        height: 45px;
+    }
+
+    button {
+        padding: 10px 20px;
+    }
+}

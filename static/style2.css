@@ -1,0 +1,134 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body Styling */
+body {
+    background-color: #f4ede4;
+    color: #3d2f2f;
+    min-height: 100vh;
+    overflow-y: auto; /* Allow vertical scrolling */
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Main Section Layout */
+.main {
+    display: flex;
+    background-color: #fffaf3;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
+    overflow: hidden;
+    position: relative;
+}
+.left {
+    padding: 30px 40px 40px; /* Extra space at the top for the logo */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Logo Section at Top Left */
+.left .logo {
+    position: relative;
+    top: 5px;
+    display: flex;
+    gap: 10px;
+    width: 90%;
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+}
+
+.left .logo h3 {
+    width: 90%;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #5a3e36;
+}
+
+/* Left Section */
+.left h1 {
+
+    font-size: 2.8rem;
+    color: #5a3e36;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.left h3 {
+    font-size: 1.0rem;
+    color: #7a5f50;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.left button {
+    padding: 12px 30px;
+    background-color: #8b5e3c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.left button a{
+    text-decoration-line: none;
+    color: white;
+    font-size: 1rem;
+}
+
+.left button:hover {
+    background-color: #6e4a2e;
+}
+
+/* Right Section */
+.right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 20px; */
+    background-color: #e9dcc7;
+}
+
+
+.right .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo {
+        align-items: center;
+        flex-direction: column;
+        position: static;
+        margin-bottom: 20px;
+    }
+
+    .left {
+        padding: 40px;
+        text-align: center;
+    }
+
+    .right {
+        padding: 10px;
+    }
+}
+

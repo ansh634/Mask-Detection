@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+</head>
+<body>
+    
+    <div class="main">
+        <div class="left">
+            <div class="logo">
+                <img class="image" src="{{ url_for('static', filename='logo.png') }}" alt="Your Image">
+                <h3>Ramdeobaba University Nagpur</h3>
+            </div>
+            <h1>Innovative Mask Detection Technology</h1>
+            <h3>Transforming safety with advanced mask detection technology for healthier communities.</h3>
+            <button>
+                <a href="{{ url_for('camera') }}">Get Started</a>
+
+                
+            </button>
+        </div>
+        <div class="right">
+            <img class="image" src="{{ url_for('static', filename='lady.png') }}" alt="Your Image">
+        </div>
+    </div>
+</body>
+</html>
