@@ -85,15 +85,6 @@ The dataset contains labeled images of individuals with masks and without masks.
    python detect_webcam.py
    ```
 
----
-
-## Screenshots
-
-### Real-Time Mask Detection
-![Real-Time Detection](/Images/home.png)
-![Real-Time Detection](/Images/withoutMask.png)
-![Real-Time Detection](/Images/with_Mask.png)
-
 
 
 ---
